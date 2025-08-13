@@ -45,3 +45,11 @@ r3live_lio:
    filter_size_surf: 0.30
    filter_size_surf_z: 0.30
    filter_size_map: 0.30
+
+launch_file: "r3live_bag.launch"
+
+dataset:
+  ros_bag: "/root/code/datasets/r3live/hku_campus_seq_02.bag"
+
+path:
+  output_dir: "/root/code/output/"
