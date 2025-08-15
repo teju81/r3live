@@ -163,6 +163,15 @@ double vx, vy, vz;
 void   mid_handler( const sensor_msgs::PointCloud2::ConstPtr &msg )
 {
     pcl::PointCloud< PointType > pl;
+
+
+    cout << "Input pointcloud field names: [" << msg->fields.size() << "]: ";
+    for ( size_t i = 0; i < msg->fields.size(); i++ )
+    {
+        cout << msg->fields[ i ].name << ", " << endl;
+    }
+    cout << endl;
+
     pcl::fromROSMsg( *msg, pl );
 
     pcl::PointCloud< PointType > pl_corn, pl_surf;
@@ -388,7 +397,7 @@ void give_feature( pcl::PointCloud< PointType > &pl, vector< orgtype > &types, p
     uint plsize2;
     if ( plsize == 0 )
     {
-        printf( "something wrong\n" );
+        printf( "something wrong. No points found...\n" );
         return;
     }
     uint head = 0;
@@ -759,6 +768,7 @@ int plane_judge( const pcl::PointCloud< PointType > &pl, vector< orgtype > &type
         i_nex++;
     }
 
+
     double leng_wid = 0;
     double v1[ 3 ], v2[ 3 ];
     for ( uint j = i_cur + 1; j < i_nex; j++ )
@@ -783,8 +793,10 @@ int plane_judge( const pcl::PointCloud< PointType > &pl, vector< orgtype > &type
     if ( ( two_dis * two_dis / leng_wid ) < p2l_ratio )
     {
         curr_direct.setZero();
+
         return 0;
     }
+
 
     uint disarrsize = disarr.size();
     for ( uint j = 0; j < disarrsize - 1; j++ )
@@ -800,9 +812,11 @@ int plane_judge( const pcl::PointCloud< PointType > &pl, vector< orgtype > &type
         }
     }
 
+
     if ( disarr[ disarr.size() - 2 ] < 1e-16 )
     {
         curr_direct.setZero();
+
         return 0;
     }
 
@@ -814,6 +828,7 @@ int plane_judge( const pcl::PointCloud< PointType > &pl, vector< orgtype > &type
         if ( dismax_mid >= limit_maxmid || dismid_min >= limit_midmin )
         {
             curr_direct.setZero();
+
             return 0;
         }
     }
@@ -823,12 +838,14 @@ int plane_judge( const pcl::PointCloud< PointType > &pl, vector< orgtype > &type
         if ( dismax_min >= limit_maxmin )
         {
             curr_direct.setZero();
+
             return 0;
         }
     }
 
     curr_direct << vx, vy, vz;
     curr_direct.normalize();
+
     return 1;
 }
 
