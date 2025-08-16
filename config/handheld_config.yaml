@@ -52,4 +52,4 @@ dataset:
   ros_bag: "/root/code/datasets_extra/ARTGarage/handheld/rosbag1_2025_07_24-17_36_52.bag"
 
 path:
-  output_dir: "/root/code/output/"
+  output_dir: "/root/code/datasets_extra/ARTGarage/handheld/r3live/output"
