@@ -355,7 +355,7 @@ public:
         if ( 1 )
         {
             scope_color( ANSI_COLOR_RED );
-            get_ros_parameter( m_ros_node_handle, "r3live_common/map_output_dir", m_map_output_dir,
+            get_ros_parameter( m_ros_node_handle, "path/output_dir", m_map_output_dir,
                                Common_tools::get_home_folder().append( "/r3live_output" ) );
             get_ros_parameter( m_ros_node_handle, "r3live_common/append_global_map_point_step", m_append_global_map_point_step, 4 );
             get_ros_parameter( m_ros_node_handle, "r3live_common/recent_visited_voxel_activated_time", m_recent_visited_voxel_activated_time, 0.0 );
